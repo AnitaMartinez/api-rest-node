@@ -1,6 +1,5 @@
 //Controladores de las rutas de nuestro API
 
-
 //Esto devuelve los registros almacenados
 
 const mongoose = require('mongoose');

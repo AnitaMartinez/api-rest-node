@@ -7,7 +7,7 @@ facilita crear y trabajar con esquemas
 
 exports = module.exports = (app, mongoose) => {
 
-    const tvShowSchema = new Schema({
+    const tvShowSchema = new mongoose.Schema({
         title : { type : String },
         year : { type : Number },
         country : { type : String },
