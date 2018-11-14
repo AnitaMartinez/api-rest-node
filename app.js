@@ -32,6 +32,23 @@ mongoose.connect('mongodb://localhost/tvshow', (err, res) => {
     });
 });
 
+//Unir los controllers de las rutas del api a las peticiones que serán nuestras llamadas al API
+//Parra ello, declaramos las rutas. API Routes
+
+const TVShowCtrl = require('./controllers/tvshow');
+const tvshows = express.Router();
+
+tvshows.route('/tvshow')
+    .get(TVShowCtrl.findAllTVShows)
+    .post(TVShowCtrl.addTVShow);
+
+tvshows.route('tvshow/:id')
+    .get(TVShowCtrl.findById)
+    .put(TVShowCtrl.updateTVShow)
+    .delete(TVShowCtrl.deleteTVShow);
+
+app.use('/api', tvshows);
+
 
 
 
