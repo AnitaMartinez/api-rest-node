@@ -4,7 +4,7 @@
 //Esto devuelve los registros almacenados
 
 const mongoose = require('mongoose');
-const TVShow = mongoose.model('TVShow');
+const Tvshows = mongoose.model('Tvshows');
 
 //Funciones para conseguir, insertar, actualizar y borrar registros de la base de datos
 
@@ -12,7 +12,7 @@ const TVShow = mongoose.model('TVShow');
 //Get - devuelve los registros completos de tvshow de la DB. Esta función envía la colección de tvshow almacenada y en formato json
 
 exports.findAllTVShows = (req, res) => {
-    TVShow.find((err, tvshow) => {
+    Tvshows.find((err, tvshow) => {
         if(err) {
             res.send(500, err.message);
         }
@@ -24,7 +24,7 @@ exports.findAllTVShows = (req, res) => {
 //Get - devuelve un registro con un identificador único
 
 exports.findById = (req, res) => {
-  TVShow.findById(req.params.id, (err, tvshow) => {
+  Tvshows.findById(req.params.id, (err, tvshow) => {
       if(err) {
           return res.send(500, err.message);
       }
@@ -39,7 +39,7 @@ exports.findById = (req, res) => {
 exports.addTVShow = (req, res) => {
   console.log('POST');
   console.log(req.body);
-  const tvshow = new TVShow({
+  const tvshow = new Tvshows({
       title : req.body.title,
       year  : req.body.year,
       country : req.body.country,
@@ -59,7 +59,7 @@ exports.addTVShow = (req, res) => {
 //Put - Actualizar un registro que ya existe, a partir de una id. Primero buscamos, luego actualizamos
 
 exports.updateTVShow = (req, res) => {
-  TVShow.findById(req.params.id, (err, tvshow) => {
+  Tvshows.findById(req.params.id, (err, tvshow) => {
       tvshow.title   = req.body.petId;
       tvshow.year    = req.body.year;
       tvshow.country = req.body.country;
@@ -80,7 +80,7 @@ exports.updateTVShow = (req, res) => {
 //Delete - Eliminar un tvshow que tiene un determinado id
 
 exports.deleteTVShow = (req, res) => {
-  TVShow.findById(req.params.id, (err, tvshow) => {
+  Tvshows.findById(req.params.id, (err, tvshow) => {
       tvshow.remove(err => {
           if(err) {
               return res.status(500).send(err.message);
