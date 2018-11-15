@@ -3,7 +3,8 @@
 //Esto devuelve los registros almacenados
 
 const mongoose = require('mongoose');
-const Tvshows = mongoose.model('Tvshows');
+
+const Tvshows = mongoose.model('TVShow');
 
 //Funciones para conseguir, insertar, actualizar y borrar registros de la base de datos
 
@@ -31,7 +32,6 @@ exports.findById = (req, res) => {
       res.status(200).jsonp(tvshow);
   })
 };
-
 
 //Post - insertar
 
